@@ -27,3 +27,4 @@ users/sign_up にアクセスし、一人ユーザーを作成してください
 * user:show(/users/1)
 * product:show(/products/1)
 * product:new(/products/new)
+# freemarket_sample_frontonly
