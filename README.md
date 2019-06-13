@@ -6,14 +6,13 @@
 |profile|text||
 |evaluation|interger||
 |birthday|datetime|null: false|
-|postal_code|interger||
+|postal_code|string||
 |prefecture|string||
 |city|string||
-|address|interger||
+|address|string||
 |building_name|string||
 
 ## Association
-- has_many :items
 - has_many :points
 - has_many :todos
 - has_many :notifications
@@ -44,7 +43,6 @@
 - has_many :likes
 - has_many :item_users
 - has_many :users, through: :item_users
-- belongs_to :user
 - belongs_to :category
 - belongs_to :brand
 
@@ -55,6 +53,10 @@
 |item_id|references|null: false, foreign_key: true|
 |exhibition_status|string||
 |purchase_status|string||
+
+## Association
+- belongs_to :user
+- belongs_to :item
 
 # categorysテーブル
 ## 経路列挙型で実装
