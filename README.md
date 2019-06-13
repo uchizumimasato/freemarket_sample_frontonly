@@ -1,30 +1,135 @@
-# これは何？
-社員研修用に利用する、freemarket_sampleのフロントのみ実装したものです。
+# usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+|name_kana|string|null: false, unique: true|
+|profile|text||
+|evaluation|interger||
+|birthday|datetime|null: false|
+|postal_code|interger||
+|prefecture|string||
+|city|string||
+|address|interger||
+|building_name|string||
 
-# どうやって使うの？
+## Association
+- has_many :items
+- has_many :points
+- has_many :todos
+- has_many :notifications
+- has_many :likes
+- has_many :sales
+- has_many :likes
+- has_many :item_users
+- has_many :items, through: item_users
 
-## 1. Githubからダウンロードする
-上の方にボタンがあるので、ダウンロードしてください。クローンしないのは、誤ってプッシュしてこのリポジトリが変更されることを防ぐためです。
+# itemsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, index: true|
+|description|text|null: false|
+|status|string||
+|price|interger|null: false|
+|item_status|string|null: false|
+|size|string||
+|delivery_fee|string|null: false|
+|delivery_method|string|null: false|
+|prefecture|interger|null: false|
+|delivery_date|inerger|null: false|
+|user_id|references|null: false, foreign_key: true|
+|category_id|references|null: false, foreign_key: true|
+|brand_id|references|null: false, foreign_key: true|
 
-## 2. 自分のPC上でダウンロードして来たzipを解凍
-ここで、Rubyのバージョンを2.5.1に変更してください。なければrbenvを利用して2.5.1をインストールしてください。
-また、`bundle install`もしておきましょう。
+## Association
+- has_many :likes
+- has_many :item_users
+- has_many :users, through: :item_users
+- belongs_to :user
+- belongs_to :category
+- belongs_to :brand
 
-## 3. データベースの準備
-以下のコマンドで、データベースを準備します。この時、database.ymlを編集してデータベースの名前を変更しても構いません。
+# item_usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|references|null: false, foreign_key: true|
+|item_id|references|null: false, foreign_key: true|
+|exhibition_status|string||
+|purchase_status|string||
 
-rails db:create
-rails db:migrate
+# categorysテーブル
+## 経路列挙型で実装
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true, index: true|
+|ancestry|string|nul: false|
 
-この時DB名は各々決めて良い事とする
+## Association
+- has_many :items
 
-## 4.ユーザー作成
-users/sign_up にアクセスし、一人ユーザーを作成してください。
+# brandsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true, index: true|
 
-## 5.閲覧できるページの確認
-以下のページにアクセス可能です。一度確認してください。
-* top(/)
-* user:show(/users/1)
-* product:show(/products/1)
-* product:new(/products/new)
-# freemarket_sample_frontonly
+## Association
+has_many :items
+
+# todosテーブル
+|Column|Type|Options|
+|------|----|-------|
+|text|text||
+|user_id|references|null: false, foreign_key: true|
+
+## Association
+belongs_to :user
+
+# notificationsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|contents|text||
+|user_id|references|null: false, foreign_key: true|
+
+## Association
+belongs_to :user
+
+# newsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|contents|text||
+
+# likesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|references|null: false, foreign_key: true|
+|item_id|references|null: false, foreign_key: true|
+
+## Association
+- belongs_to :user
+- belongs_to :item
+
+# pointsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|references|null: false, foreign_key: true|
+
+## Association
+- belongs_to :user
+
+# salesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|sales|interger||
+|sales_history|interger||
+|user_id|references|null: false, foreign_key: true|
+
+## Association
+- belongs_to :user
+
+# その他
+## Active_hashで実装
+- 都道府県
+- 配送方法
+
+## Active_storageで実装
+- 画像
+
