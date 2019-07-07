@@ -10,44 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190315090056) do
+ActiveRecord::Schema.define(version: 20190701022134) do
 
-  create_table "products", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
-    t.text "detail"
-    t.integer "shipping_fee"
-    t.integer "expected_date"
+    t.text "description", null: false
+    t.string "item_status", null: false
+    t.integer "delivery_fee", null: false
+    t.string "delivery_method", null: false
+    t.integer "delivery_date", null: false
+    t.integer "prefecture", null: false
     t.integer "price", null: false
-    t.integer "like_count", default: 0
-    t.string "status", null: false
     t.string "size"
     t.integer "transaction_status", default: 0, null: false
-    t.integer "purchaser_id"
-    t.integer "user_id", null: false
+    t.integer "seller_id", null: false
+    t.integer "buyer_id", null: false
+    t.integer "category_id", null: false
+    t.integer "brand_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_products_on_name"
-    t.index ["price"], name: "index_products_on_price"
-    t.index ["user_id"], name: "index_products_on_user_id"
+    t.index ["name"], name: "index_items_on_name"
+    t.index ["price"], name: "index_items_on_price"
   end
 
-  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.string "name_kana", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.text "profile"
+    t.integer "evalation"
+    t.datetime "birthday"
+    t.string "postal_code"
+    t.string "prefecture"
+    t.string "city"
+    t.string "address"
+    t.string "buildint_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "nickname"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["name"], name: "index_users_on_name"
   end
 
-  add_foreign_key "products", "users"
 end
