@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
-  root to: "products#index"
-  devise_for :users
+  root to: "items#index"
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :registrations, only: :new do
+    collection do
+      get 'first'
+      post 'second', 'third', 'forth', 'fifth'
+    end
+  end
   resources :users, only: [:show] do
     member do
       get "likes", "listings", "in_progress", "completed", "purchase", "purchased"
     end
   end
-  resources :products, only: [:new, :create, :show] do
+  resources :items, only: [:new, :create, :show] do
     member do
       post "purchase"
     end
