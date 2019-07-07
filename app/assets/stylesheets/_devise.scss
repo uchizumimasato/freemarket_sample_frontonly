@@ -21,6 +21,22 @@
       margin: 0 auto;
       background-color: $white;
       width: 700px;
+      padding-bottom: 50px;
+      .done_text {
+        width: 35%;
+        margin: 0 auto;
+      }
+      .doneBtn {
+        display: block;
+        line-height: 48px;
+        background: #ea352d;
+        border: 1px solid #ea352d;
+        color: #fff;
+        margin: 40px auto;
+        width: 240px;
+        padding-left: 80px;
+        text-decoration: none;
+      }
       &--narrow {
         width: 456px;
         .resetTitle {
@@ -59,13 +75,54 @@
       .deviseForm {
         border-top: 1px solid $hexWhite;
         padding: 64px;
+        position: relative;
         &--none {
           padding: 0 0 40px 0;
+        }
+        .new_account_email {
+          width: 240px;
+          padding: 15px 0 15px 80px;
+          margin: 0 auto 16px;
+          display: block;
+          background-color: #eee;
+          color: #000;
+
+        }
+        .new_account_facebook {
+          text-align: center;
+          width: 320px;
+          height: 35px;
+          padding-top: 15px;
+          margin: 0 auto 16px;
+          display: block;
+          background-color: #385185;
+          color: #fff;
+        }
+        .new_account_google {
+          text-align: center;
+          width: 320px;
+          padding-top: 15px;
+          height: 35px;
+          margin: 0 auto;
+          display: block;
+          background-color: #fff;
+          color: #333;
+          border: #979797 solid 1px;
+        }
+        .fa-envelope-o {
+          position: absolute;
+          left: 200px;
+          top: 80px;
+          color: #ccc;
         }
         .new_user {
           max-width: 320px;
           margin: 0 auto;
           .deviseForm__field {
+            .phone_confirm_title {
+              font-size: 15px;
+              font-weight: 1;
+            }
             @include form();
             margin: 40px 0 0;
             &--top {
@@ -77,6 +134,9 @@
             .formRequired {
               @include required();
             }
+            .formAny {
+              @include any()
+            }
             .inputField {
               @include input();
               &--small {
@@ -87,6 +147,12 @@
                 width: 100%;
               }
             }
+            .selectDate {
+              @include date()
+            }
+            .selectField {
+              @include select()
+            }
           }
           .remember__field {
             margin: 10px 0 0 0;
@@ -95,6 +161,9 @@
             .deviseBtn {
               @include btn();
             }
+          }
+          .phone_text {
+            font-size: 15px;
           }
         }
         a {

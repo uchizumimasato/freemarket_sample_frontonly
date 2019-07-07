@@ -1,0 +1,49 @@
+.devise
+  = render "shared_user/header"
+  .deviseSection
+    .inner
+      %h2.title 住所登録
+      .deviseForm
+        = form_with url: forth_registrations_path, method: :post, class: 'new_user', local: true do |f|
+          .deviseForm__field.deviseForm__field--top
+            = f.label :お名前
+            %span.formRequired 必須
+            %br/
+            = f.text_field :name, autofocus: true, autocomplete: "off", placeholder: "例）山田太郎", class: "inputField", required: true
+          .deviseForm__field
+            = f.label :お名前カナ
+            %span.formRequired 必須
+            %br/
+            = f.text_field :name_kana, autofocus: true, autocomplete: "email", placeholder: "ヤマダタロウ", class: "inputField", required: true
+          .deviseForm__field
+            = f.label :郵便番号
+            %span.formRequired 必須
+            %br/
+            = f.text_field :postal_code, autocomplete: "off", placeholder: "例）123-4567", class: "inputField", required: true
+          .deviseForm__field
+            = f.label :都道府県
+            %span.formRequired 必須
+            = f.collection_select :prefecture, Prefecture.all, :id, :name, {prompt: "------"}, {class: "selectField"}
+          .deviseForm__field
+            = f.label :市区町村
+            %span.formRequired 必須
+            %br/
+            = f.text_field :city, autocomplete: "off", placeholder: "例）横浜市緑区", class: "inputField", required: true
+          .deviseForm__field
+            = f.label :番地
+            %span.formRequired 必須
+            %br/
+            = f.text_field :address, autocomplete: "off", placeholder: "例）青山1-1-1", class: "inputField", required: true
+          .deviseForm__field
+            = f.label :建物名
+            %span.formAny 任意
+            %br/
+            = f.text_field :buildint_name, autocomplete: "off", placeholder: "例）柳ビル103", class: "inputField"
+          .deviseForm__field
+            = f.label :電話番号
+            %span.formAny 任意
+            %br/
+            = f.text_field :buildint_name, autocomplete: "off", placeholder: "例）09012345678", class: "inputField"
+          .deviseForm__actions
+            = f.submit "次へ進む", class: "deviseBtn"
+  =render "shared_user/footer"
