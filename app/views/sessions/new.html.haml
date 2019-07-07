@@ -1,0 +1,19 @@
+.devise
+  = render "shared_user/header"
+  .deviseSection
+    .inner.inner--narrow
+      .title.title--narrow
+        %p.newText アカウントをお持ちでない方はこちら
+        = link_to"新規会員登録", first_registrations_path, class: "deviseBtn--blue"
+      .deviseForm
+        = link_to "Facebookで登録", "", class: 'new_account_facebook'
+        = link_to "Googleで登録", "", class: 'new_account_google'
+      .deviseForm.deviseForm--none
+        = form_with url: sessions_path, method: :post, local: true, class: 'new_user' do |f|
+          .deviseForm__field
+            = f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "メールアドレス", class: "inputField", required: true
+          .deviseForm__field
+            = f.password_field :password, autocomplete: "off", placeholder: "パスワード", class: "inputField", required: true
+          .deviseForm__actions
+            = f.submit "ログイン", class: "deviseBtn"
+  = render "shared_user/footer"

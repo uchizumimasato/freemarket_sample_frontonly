@@ -1,0 +1,12 @@
+.devise
+  .deviseSection
+    .inner
+      %h2.title 電話番号の確認
+      .deviseForm
+        = form_with url: third_registrations_path, class: 'new_user', method: :post, local: true do |f|
+          .deviseForm__field
+            = f.label :携帯電話の確認
+            = f.text_field :nickname, autofocus: true, autocomplete: "off", placeholder: "例）09012345678", class: "inputField"
+          .deviseForm__actions
+            = f.submit "SMSを送信する", class: "deviseBtn"
+            %span.phone_text ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
