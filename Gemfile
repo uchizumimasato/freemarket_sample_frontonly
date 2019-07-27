@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 
-gem 'rails', '~> 5.1.6', '>= 5.1.6.1'
+gem 'rails', '5.2.3'
 gem 'mysql2', '>= 0.3.18', '< 0.6.0'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
@@ -22,6 +22,8 @@ gem 'devise'
 gem 'bcrypt'
 gem 'pry-rails'
 gem 'active_hash'
+gem 'mini_magick'
+gem 'ancestry'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -32,6 +34,9 @@ group :development, :test do
   gem 'capistrano3-unicorn'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
+  gem 'faker'
+  gem 'gimei'
 end
 
 group :development do
