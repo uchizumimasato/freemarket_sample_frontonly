@@ -125,7 +125,6 @@ $(function(){
 
   $('.inputField__price').on('input', function() {
     var val = $('.inputField__price').val()
-    console.log(val)
 
     if (val != '') {
       var persent = val / 10
@@ -139,7 +138,6 @@ $(function(){
 
       $('.profitholder .profitholder--persent').append(persent)
       $('.profitholder .profitholder--output').append(price)
-      //console.log($('.profitholder .profitholder--persent li'))
     } else {
       $('.profitholder .profitholder--persent li')[1].remove()
       $('.profitholder .profitholder--output li')[1].remove()
