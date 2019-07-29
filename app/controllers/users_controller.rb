@@ -9,15 +9,15 @@ class UsersController < ApplicationController
   end
 
   def listings
-    @items = current_user.sell_items.where(transaction_status: 0)
+    @items = current_user.sell_items.where(transaction_status: Item.transaction_statuses[:buy])
   end
 
   def in_progress
-    @items = current_user.sell_items.where(transaction_status: '1')
+    @items = current_user.sell_items.where(transaction_status: Item.transaction_statuses[:trade])
   end
 
   def completed
-    @items = current_user.sell_items.where(transaction_status: '2')
+    @items = current_user.sell_items.where(transaction_status: Item.transaction_statuses[:selled])
   end
 
   def purchase
