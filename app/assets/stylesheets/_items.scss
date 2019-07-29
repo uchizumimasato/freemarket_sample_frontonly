@@ -96,22 +96,29 @@
           &--top {
             margin: 0;
             .formUploader {
+              width: 100%;
+              float: right;
               font-size: 14px;
               background-color: $hexWhite;
               border: 0.5px dashed #ccc;
               display: block;
-              min-height: 184px;
+              height: 226px;
               text-align: center;
               line-height: 184px;
               @include clearfix();
               position: relative;
+              label {
+                height: 226px;
+              }
               .uploadInfo {
-                position: absolute;
-                top: -40%;
-                left: 30%;
                 font-weight: bold;
                 p {
                   height: 20px;
+                  line-height: 80px;
+                }
+                span {
+                  display: block;
+                  line-height: 100px;
                 }
               }
               .listGroupItem {
@@ -156,6 +163,10 @@
                 display: none;
               }
             }
+          }
+          .img {
+            width: 20%;
+            float: left;
           }
           label {
             @include label();

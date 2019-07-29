@@ -23,12 +23,12 @@
           = link_to "取引中", in_progress_user_path(current_user)
         %li.tabItem.active
           = link_to "売却済", "#"
-      - if @products.empty?
+      - if @items.empty?
         %ul.itemNotFound
           %li.itemNotFound__text 売却済みの商品がありません
       - else
         %ul.itemLists
-          = render partial: "users/product", collection: @products
+          = render partial: "users/item", collection: @items
 = render "shared/banner"
 = render "shared/footer"
 = render "shared/purchaseBtn"

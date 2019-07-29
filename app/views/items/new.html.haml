@@ -1,21 +1,24 @@
 .devise
-  = render "devise/shared/header"
+  = render "shared_user/header"
   .productMainSection
     .inner
       %h2.title 商品の情報を入力
       .productForm
-        = form_for @product do |f|
+        = form_with model: @item, class: 'new_item', local: true do |f|
           .formSection
-            = f.hidden_field :user_id, value: current_user.id
+            = f.hidden_field :seller_id, value: current_user.id
+            = f.hidden_field :buyer_id, value: 1
             .productForm__field.productForm__field--top
               = f.label :出品画像
               %span.formRequired 必須
               %br/
               %p 最大4枚までアップロードできます
               %ul.formUploader
-                .uploadInfo
-                  %p ドラッグアンドドロップ
-                  %span またはクリックしてアップロード
+                %label#1
+                  = f.file_field :images, class: 'avatar', multiple: true
+                  .uploadInfo
+                    %p ドラッグアンドドロップ
+                    %span またはクリックしてアップロード
           .formSection
             .productForm__field
               = f.label :商品名
@@ -26,7 +29,7 @@
               = f.label :商品の説明
               %span.formRequired 必須
               %br/
-              = f.text_area :detail, required: true, placeholder: "商品説明（1,000字まで）例）2018年に購入した、革ジャンです。黒みがかった見た目です。傷等はございません。", class: "inputField inputField__area", rows: "7"
+              = f.text_area :description, required: true, placeholder: "商品説明（1,000字まで）例）2018年に購入した、革ジャンです。黒みがかった見た目です。傷等はございません。", class: "inputField inputField__area", rows: "7"
           .formSection
             .contentLeft
               %h3 商品の詳細
@@ -35,7 +38,8 @@
                 = f.label :カテゴリー
                 %span.formRequired 必須
                 %br/
-                = f.collection_select(:size, [], :id , :name, {prompt: "---"}, {class: "inputField inputField__select", id: "category", required: true})
+                = f.select(:category_id, [['レディース', 1], ['メンズ', 11]], {prompt: '---'}, {class: "inputField inputField__select", id: "inputField__select--category", name: 'item[category_id]'})
+                / = f.collection_select :category_id, Category.where(name: ['レディース', 'メンズ']), :id, :name, {prompt: "---"}, {class: "inputField inputField__select", id: "inputField__select--category", name: 'item[category_id]', required: true}
               .productForm__field
                 = f.label :ブランド
                 %br/
@@ -45,7 +49,7 @@
                 = f.label :商品の状態
                 %span.formRequired 必須
                 %br/
-                = f.select(:status, [["新品/未使用", 0], ["未使用に近い", 1], ["目立った傷や汚れなし", 2], ["やや傷や汚れあり", 3], ["傷や汚れあり", 4], ["状態が悪い", 5]], {prompt: "---"}, {class: "inputField inputField__select", required: true})
+                = f.select(:item_status, [["新品/未使用", 0], ["未使用に近い", 1], ["目立った傷や汚れなし", 2], ["やや傷や汚れあり", 3], ["傷や汚れあり", 4], ["状態が悪い", 5]], {prompt: "---"}, {class: "inputField inputField__select", required: true})
           .formSection
             .contentLeft
               %h3
@@ -54,21 +58,21 @@
                 = link_to "#" do
                   = fa_icon "question-circle"
             .contentRight
-              .productForm__field
+              .productForm__field.inputDelivery_fee
                 = f.label :配送料の負担
                 %span.formRequired 必須
                 %br/
-                = f.select(:shipping_fee, [["送料込み（出品者負担）", 0], ["着払い（購入者負担）", 1]], {prompt: "---"}, {class: "inputField inputField__select", required: true})
+                = f.select(:delivery_fee, [["送料込み（出品者負担）", 0], ["着払い（購入者負担）", 1]], {prompt: "---"}, {class: "inputField inputField__select", id: 'inputField__select--fee', required: true})
               .productForm__field
                 = f.label :発送元の地域
                 %span.formRequired 必須
                 %br/
-                = f.collection_select(:price, [], :id, :name, {prompt: "---"}, {class: "inputField inputField__select", required: true})
+                = f.collection_select :prefecture, Prefecture.all, :id, :name, {prompt: "---"}, {class: "inputField inputField__select", required: true}
               .productForm__field
                 = f.label :発送までの日数
                 %span.formRequired 必須
                 %br/
-                = f.select(:expected_date, [["1-2日で発送", 0], ["2-3日で発送", 1], ["4-7日で発送", 2]], {prompt: "---"}, {class: "inputField inputField__select", required: true})
+                = f.select(:delivery_date, [["1-2日で発送", 0], ["2-3日で発送", 1], ["4-7日で発送", 2]], {prompt: "---"}, {class: "inputField inputField__select", required: true})
           .formSection
             .contentLeft
               %h3
@@ -83,11 +87,11 @@
                     = f.label :価格（円）
                     %span.formRequired 必須
                   %li
-                    = f.text_field :price, required: true, placeholder: "例）1,000", class: "inputField"
+                    = f.text_field :price, required: true, placeholder: "例）1,000", class: "inputField inputField__price"
               .profitholder
-                %ul
+                %ul.profitholder--persent
                   %li 販売手数料（10%）
-                  %li -
+                  %li.persent -
                 %ul.profitholder--output
                   %li 販売利益
                   %li -
@@ -109,4 +113,4 @@
             .productForm__actions
               = f.submit "出品する", class: "productBtn"
             = link_to "もどる", :back, class: "returnBtn"
-  = render "devise/shared/footer"
+  = render "shared_user/footer"
