@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :login_required
   helper_method :user_signed_in?
+  helper_method :item_soldout?
+  helper_method :login_to_root
 
   private
 
@@ -31,5 +33,17 @@ class ApplicationController < ActionController::Base
     else
       return false
     end
+  end
+
+  def item_soldout?(item)
+    if item.transaction_status == 3
+      return true
+    else
+      return false
+    end
+  end
+
+  def login_to_root
+    redirect_to root_path if user_signed_in?
   end
 end

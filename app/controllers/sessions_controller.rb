@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :login_to_root, only: :new
 
   def new
   end
@@ -16,7 +17,7 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to root_path, notice: 'ログアウトしました'
+    redirect_to new_session_path, notice: 'ログアウトしました'
   end
 
   private

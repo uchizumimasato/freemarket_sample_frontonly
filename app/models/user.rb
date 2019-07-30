@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
+  has_one_attached :avatar
+  has_many :sell_items, class_name: 'Item', foreign_key: 'seller_id'
+  has_many :buy_items, class_name: 'Item', foreign_key: 'buyer_id'
 
   validates :nickname, presence: true
   validates :name, presence: true
