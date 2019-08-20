@@ -1,12 +1,12 @@
 $(function() {
   $("#slickLists--0").slick({
-    centerMode: true,
+    //centerMode: true,
     centerPadding: '100px',
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
+    //infinite: true,
+    //slidesToShow: 3,
+    //slidesToScroll: 1,
+    //autoplay: true,
+    //autoplaySpeed: 2000,
   });
 });
 $(function() {
