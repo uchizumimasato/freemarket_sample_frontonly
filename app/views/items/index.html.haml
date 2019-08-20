@@ -132,7 +132,7 @@
     .productBox
       .productHead
         = link_to "" do
-          %h3.title "シャネル"
+          %h3.title=@brand_items[0].brand.name
       .productLists
         = render @brand_items
 = render "shared/banner"
