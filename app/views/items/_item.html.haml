@@ -1,0 +1,12 @@
+.item_box
+  = link_to item_path(item) do
+    - if item.transaction_status == 'selled'
+      .soldout--small
+      .soldoutText--small 売り切れ
+    .item_image
+      = image_tag item.images.first
+    .item_body
+      %h3.item_body_title
+        title
+      .item_body_price
+        3000円

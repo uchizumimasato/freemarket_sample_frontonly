@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  #enum
+  # enum
   enum transaction_status: [:buy, :trade, :selled]
 
   # アソシエーション
@@ -17,4 +17,5 @@ class Item < ApplicationRecord
   validates :delivery_method, presence: true
   validates :prefecture, presence: true
   validates :delivery_date, presence: true
+  validates :images, presence: true
 end

@@ -239,12 +239,31 @@
     }
   }
   .productLists {
-    width: 1040px;
+    width: 940px;
     margin: 26px auto;
+    display: flex;
     @include clearfix();
+    .item_box {
+      width: 213px !important;
+      margin-left: 20px;
+    }
     a {
+      color: black;
       text-decoration: none;
       position: relative;
+      display: block;
+      .item_image img {
+        width: 213px;
+        height: 220px;
+      }
+      .item_body {
+        height: 80px;
+        padding: 16px;
+        .item_body_title {
+          height: 48px;
+          width: 181px;
+        }
+      }
       .soldout--small {
         width: 0;
         height: 0;
