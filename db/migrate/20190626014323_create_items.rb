@@ -14,7 +14,7 @@ class CreateItems < ActiveRecord::Migration[5.1]
       t.integer    :seller_id, null: false, foreign_key: true   # 売り手のid
       t.integer    :buyer_id, foreign_key: true                 # 買い手のid
       t.integer    :category_id, null: false, foreign_key: true # カテゴリーのid
-      t.integer    :brand_id, foreign_key: true                 # ブランドのid
+      t.integer    :brand_id                                    # ブランドのid
       t.timestamps
     end
   end
