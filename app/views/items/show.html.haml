@@ -31,49 +31,51 @@
           .itemBox__body
             %ul
               %li
-                = image_tag"", size: "300x285"
-                .soldout
-                .soldoutText 売り切れ
+                = image_tag @item.images[0], size: "300x285"
+                - if @item.transaction_status == 2
+                  .soldout
+                    .soldoutText 売り切れ
                 %ul
-                  %li
-                    = image_tag "", size: "75x75"
+                  - @item.images.each do |image|
+                    %li
+                      = image_tag image, size: "75x75"
               %li.table
                 %table
                   %tbody
                     %tr
                       %th 出品者
-                      %td だれ誰
+                      %td= @item.seller.name
                     %tr
                       %th カテゴリー
                       %td
-                        = link_to "メインカテゴリー", ""
+                        = link_to @category.parent.parent.name, "#"
                         %br
-                        = link_to "サブカテゴリー", ""
+                        = link_to @category.parent.name, "#"
                         %br
-                        = link_to "アイテム", ""
+                        = link_to @category.name, "#"
                     %tr
                       %th ブランド
                       %td
-                        = link_to "ブランド名", "#"
+                        = link_to @item.brand.name, "#"
                     %tr
                       %th 商品のサイズ
-                      %td これくらい
+                      %td= @item.size
                     %tr
                       %th 商品の状態
-                      %td こんなもん
+                      %td= @item.item_status
                     %tr
                       %th 配送料の負担
-                      %td 100円
+                      %td= @item.delivery_fee
                     %tr
                       %th 発送元の地域
                       %td
-                        = link_to "青森", ""
+                        = link_to @item.prefecture.name, ""
                     %tr
                       %th 発送日の目安
-                      %td 3日
+                      %td= @item.delivery_date
           .itemBox__price
             %span
-              4000円
+              =@item.price
             %span
               (税込)
             %span
@@ -92,6 +94,11 @@
             %li.optionalBtn
               = link_to "#" do
                 = fa_icon "lock", text: "あんしん・あんぜんへの取り組み"
+      .bottomContent
+        .bottomContent_buttons
+          = link_to "商品の編集", edit_item_path(@item), class: 'edit-button'
+          %p or
+          = link_to "商品の削除", item_path(@item), method: :delete, class: 'delete-button'
         -# - if user_signed_in?
         -#   .commentBox
         -#     - if @comments
@@ -130,19 +137,6 @@
         -#         %br
         -#         = button_tag type: "submit", class: "commentBtn" do
         -#           = fa_icon "comment", text: "コメントする"
-      %ul.links
-        %li
-          = link_to "#" do
-            = fa_icon "angle-left"
-            %span
-            前の商品
-        %li
-          = link_to "#" do
-            %span 後ろの商品
-            = fa_icon "angle-right"
-      .relatedItems
-        = link_to "カテゴリをもっと見る", ""
-
 = render "shared/banner"
 = render "shared/footer"
 = render "shared/purchaseBtn"

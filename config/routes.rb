@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       get "likes", "listings", "in_progress", "completed", "purchase", "purchased"
     end
   end
-  resources :items, only: [:new, :create, :show] do
+  resources :items do
     member do
       post "purchase"
     end
