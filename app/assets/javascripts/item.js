@@ -85,7 +85,7 @@ $(function(){
   $('#inputField__select--fee').on('change', function() {
     $('.delivery_method').remove()
     var val = $('#inputField__select--fee').val() == "" ? 3 : $('#inputField__select--fee').val()
-    if (val == 0) {
+    if (val == "送料込み") {
       var select = `<div class='productForm__field delivery_method'>
                      <label>配送の方法</label>
                      <span class='formRequired'>必須</span>
