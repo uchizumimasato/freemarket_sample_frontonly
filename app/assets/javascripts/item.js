@@ -85,7 +85,7 @@ $(function(){
   $('#inputField__select--fee').on('change', function() {
     $('.delivery_method').remove()
     var val = $('#inputField__select--fee').val() == "" ? 3 : $('#inputField__select--fee').val()
-    if (val == "送料込み") {
+    if (val == "送料込み（出品者負担）") {
       var select = `<div class='productForm__field delivery_method'>
                      <label>配送の方法</label>
                      <span class='formRequired'>必須</span>
@@ -104,7 +104,7 @@ $(function(){
                      </select>
                    </div>`
       $('.inputDelivery_fee').after(select)
-    } else if (val == 1) {
+    } else if (val == "着払い（購入者負担）") {
       var select = `<div class='productForm__field delivery_method' name='item[delivery_method'>
                      <label>配送の方法</label>
                      <span class='formRequired'>1</span>

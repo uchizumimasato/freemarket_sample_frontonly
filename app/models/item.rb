@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   # enum
   enum transaction_status: [:buy, :trade, :selled]
-  enum delivery_fee: ["送料込み", "着払い(購入者負担)"]
+  enum delivery_fee: ["送料込み（出品者負担）", "着払い（購入者負担）"]
   enum item_status: ["新品/未使用", "未使用に近い", "目立った傷や汚れなし", "やや傷や汚れなし", "傷や汚れなし", "状態が悪い"]
   enum delivery_date: ["1-2日で発送", "2-3日で発送", "4-7日で発送"]
 
