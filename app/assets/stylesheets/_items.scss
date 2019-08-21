@@ -547,6 +547,39 @@
         }
       }
     }
+    .bottomContent {
+      width: 100%;
+      background: #fff;
+      margin-top: 30px;
+      &_buttons {
+        margin: 24px 0;
+        padding: 8px 16px 8px 16px;
+        .edit-button {
+          margin: 16px 0;
+          display: block;
+          line-height: 48px;
+          background-color: #ea352d;
+          color: #fff;
+          text-align: center;
+          font-size: 14px;
+          text-decoration: none;
+        }
+        p {
+          text-align: center;
+          font-size: 20px;
+        }
+        .delete-button {
+          margin: 16px 0;
+          display: block;
+          line-height: 48px;
+          background-color: #aaa;
+          color: #fff;
+          text-align: center;
+          font-size: 14px;
+          text-decoration: none;
+        }
+      }
+    }
     .links {
       @include clearfix();
       li {
