@@ -38,8 +38,7 @@
                 = f.label :カテゴリー
                 %span.formRequired 必須
                 %br/
-                = f.select(:category_id, [['レディース', 1], ['メンズ', 11]], {prompt: '---'}, {class: "inputField inputField__select", id: "inputField__select--category", name: 'item[category_id]'})
-                / = f.collection_select :category_id, Category.where(name: ['レディース', 'メンズ']), :id, :name, {prompt: "---"}, {class: "inputField inputField__select", id: "inputField__select--category", name: 'item[category_id]', required: true}
+                = f.select(:category_id, [['レディース', 1], ['メンズ', 11]], {prompt: '---'}, {class: "inputField inputField__select", id: "inputField__select--category", name: 'item[category_id]', required: true})
               .productForm__field
                 = f.label :ブランド
                 %br/

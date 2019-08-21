@@ -44,7 +44,7 @@ $(function(){
   // 子カテゴリーの選択
   $('#inputField__select--category').on('change', function() {
     var child_categories = {2: 'トップス', 3: 'ジャケット/アウター'}
-    var select = `<select class="inputField inputField__select" id="inputField__select--category--child" name=item[category_id] >
+    var select = `<select class="inputField inputField__select" id="inputField__select--category--child" name=item[category_id] required='required'>
                     <option>---</option>
                   </select>`
     var select_category_child = $('#inputField__select--category--child')
@@ -62,7 +62,7 @@ $(function(){
     var grandchild_categories= {4: 'Tシャツ/カットソー(半袖/袖なし)', 5: 'Tシャツ/カットソー(七分/長袖)', 6: 'その他', 7: 'テーラードジャケット', 8: 'ノーカラージャケット', 9: 'Gジャン/デニムジャケット', 10: 'その他'}
     var category_child_text = $('#inputField__select--category--child option:selected').text()
     var select_category_grandchild = $('#inputField__select--category--grandchild')
-    var select = `<select class='inputField inputField__select' id='inputField__select--category--grandchild' name=item[category_id] >
+    var select = `<select class='inputField inputField__select' id='inputField__select--category--grandchild' name=item[category_id] required='required'>
                   <option>---</option>
                 </select>`
     $(select_category_grandchild).remove()

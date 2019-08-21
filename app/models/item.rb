@@ -1,10 +1,11 @@
 class Item < ApplicationRecord
-  #enum
+  # enum
   enum transaction_status: [:buy, :trade, :selled]
 
   # アソシエーション
   has_many_attached :images
   belongs_to :category
+  belongs_to :brand
   belongs_to :seller, class_name: 'User', foreign_key: 'seller_id'
   belongs_to :buyer, class_name: 'User', foreign_key: 'buyer_id'
 
@@ -17,4 +18,5 @@ class Item < ApplicationRecord
   validates :delivery_method, presence: true
   validates :prefecture, presence: true
   validates :delivery_date, presence: true
+  validates :images, presence: true
 end

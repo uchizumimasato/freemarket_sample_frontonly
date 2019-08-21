@@ -1,3 +1,4 @@
+# カテゴリー
 # レディース
 lady = Category.create(name: "レディース")
 # 子カテゴリー
@@ -16,3 +17,48 @@ mans_jacket = mans.children.create(name: "ジャケット/アウター")
 mans_tops.children.create([{:name=>"Tシャツ/カットソー(半袖/袖なし)"}, {:name=>"Tシャツ/カットソー(七分/長袖)"},{:name=>"その他"}])
 mans_jacket.children.create([{:name=>"テーラードジャケット"}, {:name=>"ノーカラージャケット"}, {:name=>"Gジャン/デニムジャケット"},{:name=>"その他"}])
 
+
+# ブランド
+Brand.create!(
+  [
+    {
+      name: "グッチ"
+    },
+    {
+      name: "コーチ"
+    },
+    {
+      name: "ラルフローレン"
+    },
+    {
+      name: "アルマーニ"
+    },
+    {
+      name: "バーバリー"
+    },
+    {
+      name: "ディーゼル"
+    },
+    {
+      name: "エルメス"
+    },
+    {
+      name: "プラダ"
+    },
+    {
+      name: "ルイヴィトン"
+    },
+    {
+      name: "シュプリーム"
+    },
+    {
+      name: "アディダス"
+    },
+    {
+      name: "ナイキ"
+    },
+    {
+      name: "プーマ"
+    }
+  ]
+)
