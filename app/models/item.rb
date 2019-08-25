@@ -25,4 +25,11 @@ class Item < ApplicationRecord
   validates :prefecture_id, presence: true
   validates :delivery_date, presence: true
   validates :images, presence: true
+
+  def delete_images(ids)
+    ids.each do |id|
+      image = self.images[id.to_i]
+      image.purge
+    end
+  end
 end
