@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_action :login_required, only: [:new, :create]
-  before_action :set_item_category, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_categories, only: [:new, :edit]
+  before_action :set_category, only: [:show, :edit]
 
   def index
     @new_items = Item.order(created_at: "DESC").limit(4)
@@ -12,7 +14,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @categories = Category.find(1, 11)
   end
 
   def create
@@ -50,9 +51,15 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :description, :delivery_fee, :delivery_method_id, :delivery_date, :prefecture_id, :price, :item_status, :size, :transaction_status, :category_id, :brand_id, :seller_id, :buyer_id, { images: [] })
   end
 
-  def set_item_category
+  def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_category
     @category = Category.find(@item.category_id)
+  end
+
+  def set_categories
     @categories = Category.find(1, 11)
   end
 end
