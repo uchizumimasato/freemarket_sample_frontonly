@@ -48,9 +48,9 @@
                     %tr
                       %th カテゴリー
                       %td
-                        = link_to @category.parent.parent.name, "#"
+                        = link_to @category.two_parent.name, "#"
                         %br
-                        = link_to @category.parent.name, "#"
+                        = link_to @category.one_parent.name, "#"
                         %br
                         = link_to @category.name, "#"
                     %tr

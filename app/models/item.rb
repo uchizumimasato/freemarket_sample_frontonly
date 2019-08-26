@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   # アソシエーション
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
+  belongs_to_active_hash :delivery_method
   has_many_attached :images
   belongs_to :category
   belongs_to :brand
@@ -20,8 +21,15 @@ class Item < ApplicationRecord
   validates :item_status, presence: true
   validates :price, presence: true
   validates :delivery_fee, presence: true
-  validates :delivery_method, presence: true
+  validates :delivery_method_id, presence: true
   validates :prefecture_id, presence: true
   validates :delivery_date, presence: true
   validates :images, presence: true
+
+  def delete_images(ids)
+    ids.each do |id|
+      image = self.images[id.to_i]
+      image.purge
+    end
+  end
 end
