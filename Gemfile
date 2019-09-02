@@ -24,6 +24,7 @@ gem 'pry-rails'
 gem 'active_hash'
 gem 'mini_magick'
 gem 'ancestry'
+gem 'payjp'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
