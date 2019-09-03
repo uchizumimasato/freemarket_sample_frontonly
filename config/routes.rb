@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
   resources :items do
     member do
+      get  "purchase_new_item"
       post "purchase"
     end
   end
