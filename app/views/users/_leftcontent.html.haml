@@ -73,7 +73,7 @@
         %span 住所変更
         = fa_icon "angle-right"
     %li
-      = link_to "#" do
+      = link_to new_card_path do
         %span 支払い方法
         = fa_icon "angle-right"
     %li
@@ -89,7 +89,7 @@
         %span 電話番号の確認
         = fa_icon "angle-right"
     %li
-      = link_to session_path, method: :delete do
+      = link_to session_path(current_user), method: :delete do
         %span ログアウト
         = fa_icon "angle-right"
   = link_to "https://itunes.apple.com/jp/app/id667861049?l=ja&mt=8" do
