@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update]
   before_action :set_categories, only: [:new, :edit]
   before_action :set_category, only: [:show, :edit]
+  protect_from_forgery :except => [:create]
 
   def index
     @new_items = Item.order(created_at: "DESC").limit(4)
@@ -37,12 +38,27 @@ class ItemsController < ApplicationController
 
   def update
     @item.delete_images(params[:delete_ids]) if params[:delete_ids].present?
-
     if @item.update(items_params)
       redirect_to item_path(@item)
     elsif @item.images
       render :edit
     end
+  end
+
+  def purchase_new
+    @item = Item.find(params[:id])
+  end
+
+  def purchase
+    binding.pry
+    Payjp.api_key = Rails.application.credentials.payjp[:payjp_secret_key]
+    customer = current_user.card.customer_id
+    Payjp::Charge.create(
+      amount: 3500,
+      currency: 'jpy',
+      customer: customer
+    )
+    redirect_to root_path
   end
 
   private
