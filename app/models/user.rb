@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :sell_items, class_name: 'Item', foreign_key: 'seller_id'
   has_many :buy_items, class_name: 'Item', foreign_key: 'buyer_id'
+  has_one :card
 
   validates :nickname, presence: true
   validates :name, presence: true
