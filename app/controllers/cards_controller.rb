@@ -15,7 +15,6 @@ class CardsController < ApplicationController
       user_id: current_user.id
     )
     card.save
-
     redirect_to new_card_path(current_user)
   end
 end
