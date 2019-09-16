@@ -50,7 +50,6 @@ class ItemsController < ApplicationController
   end
 
   def purchase
-    binding.pry
     Payjp.api_key = Rails.application.credentials.payjp[:payjp_secret_key]
     customer = current_user.card.customer_id
     Payjp::Charge.create(

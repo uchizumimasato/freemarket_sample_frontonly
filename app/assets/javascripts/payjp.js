@@ -8,7 +8,6 @@
 
     $("#card-save").on("click", function(e) {
       e.preventDefault();
-      console.log(1)
       form.find("input[type=submit]").prop("disabled", true);
 
       var card = {
@@ -20,17 +19,14 @@
 
       Payjp.createToken(card, function(s, response) {
         if (response.error) {
-          console.log('false')
           form.find('button').prop('disabled', false);
         }
         else {
-          console.log('true')
           $(".number").removeAttr("name");
           $(".cvc").removeAttr("name");
           $(".exp_month").removeAttr("name");
           $(".exp_year").removeAttr("name");
           var token = response.id;
-          console.log(token)
           $("#card-form").append(`<input type="hidden" name="pay_id" class="payjp-token" value=${token} />`)
           $("#card-form").get(0).submit();
         }
