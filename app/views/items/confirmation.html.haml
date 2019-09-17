@@ -1,0 +1,30 @@
+.main
+  = render 'shared_user/header'
+  .showMain
+    .confirmationBox
+      .confirmationBox-header
+        %p 購入内容の確認
+      .confirmationBox-body
+        .content
+          %h3= image_tag @item.images.first, class: 'image'
+          %p.name=@item.name
+          %p.price=@item.price
+          .prices
+            %h4 支払い金額
+            %p=@item.price
+          = form_with url: purchase_item_path(@item), method: :post, local: true do |f|
+            = f.submit '購入する', class: 'purchase_btn'
+      .confirmationBox-address
+        .content
+          %h3 配送先
+          %address.address
+            = current_user.postal_code
+            %br
+            = current_user.address
+            %br
+            = current_user.name
+          %p= link_to '変更する', '#', class: 'address_change'
+      .confirmationBox-pay
+        .content
+          %h3 支払い方法
+          %p= link_to '変更する', '#', class: 'pay_change'

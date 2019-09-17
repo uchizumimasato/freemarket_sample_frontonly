@@ -250,3 +250,122 @@
     font-weight: bold;
   }
 }
+//end
+//card
+.rightContent {
+  .cardHeader {
+    line-height: 72px;
+    font-size: 16px;
+    padding: 0 16px;
+    color: $hexGray20;
+    font-weight: bold;
+    border-bottom: 2px solid #f5f5f5;
+  }
+  .cardBody {
+    height: 150px;
+    border-bottom: 2px solid #f5f5f5;
+    p {
+      width: 200px;
+      margin: 50px 0 20px 200px;
+    }
+    .add_card {
+      display: block;
+      background-color: #ea352d;
+      width: 320px;
+      height: 50px;
+      text-decoration: none;
+      color: #fff;
+      line-height: 50px;
+      padding-left: 55px;
+      box-sizing: border-box;
+      margin: 0 auto;
+    }
+  }
+  .cardFooter {
+    height: 130px;
+    text-align: right;
+    line-height: 100px;
+  }
+}
+//end
+//card_new
+.cardContent {
+  height: 500px;
+  #card-form {
+    width: 340px;
+    margin: 40px auto;
+    .card_number {
+      margin-bottom: 30px;
+      .label_number {
+        label {
+          font-weight: 600;
+        }
+        .form-require {
+          padding: 2px 4px;
+          background-color: #ea352d;
+          color: #fff;
+          border-radius: 2px;
+        }
+      }
+      #payment_card_no {
+        height: 48px;
+        width: 100%;
+      }
+    }
+    .card_cvc {
+      margin-bottom: 30px;
+      .label_cvc {
+        label {
+          font-weight: 600;
+        }
+        .form-require {
+          padding: 2px 4px;
+          background-color: #ea352d;
+          color: #fff;
+          border-radius: 2px;
+        }
+      }
+      #payment_card_security_code {
+        height: 48px;
+        width: 100%;
+      }
+    }
+    .card_exp {
+      .label_exp {
+        label {
+          font-weight: 600;
+        }
+        .form-require {
+          padding: 2px 4px;
+          background-color: #ea352d;
+          color: #fff;
+          border-radius: 2px;
+        }
+      }
+      .card_exp_month {
+        margin: 10px 19px 0 0;
+        float: left;
+        #payment_card_expire_mm {
+          height: 48px;
+          width: 140px;
+        }
+      }
+      .card_exp_year {
+        margin-top: 10px;
+        float: left;
+        #payment_card_expire_yy {
+          height: 48px;
+          width: 140px;
+        }
+      }
+    }
+    #card-save {
+      margin-top: 30px;
+      background: #ea352d;
+      border: 1px solid #ea352d;
+      color: #fff;
+      height: 50px;
+      width: 100%;
+    }
+  }
+}

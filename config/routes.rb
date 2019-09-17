@@ -9,12 +9,14 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:show] do
     member do
-      get "likes", "listings", "in_progress", "completed", "purchase", "purchased"
+      get "likes", "listings", "in_progress", "completed", "purchase", "purchased", "card"
     end
   end
   resources :items do
     member do
+      get  "purchase_new"
       post "purchase"
     end
   end
+  resources :cards, only: [:new, :create]
 end

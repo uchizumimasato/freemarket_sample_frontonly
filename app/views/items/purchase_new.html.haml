@@ -1,0 +1,10 @@
+.purchaseContent
+  .item_content
+    = image_tag @item.images[0]
+    = @item.description
+  %span.item_price= @item.price
+  .purchase_price
+    %span 支払い金額
+    = @item.price
+  = form_with url: purchase_item_path(@item), method: :post, local: true do |f|
+    = f.submit '購入する'
