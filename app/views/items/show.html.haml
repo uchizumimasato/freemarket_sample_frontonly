@@ -96,7 +96,7 @@
                 = fa_icon "lock", text: "あんしん・あんぜんへの取り組み"
       .bottomContent
         .bottomContent_buttons
-          - unless @item.buyer_id == current_user.id
+          - if @item.buyer_id == current_user.id
             = link_to "商品の編集", edit_item_path(@item), class: 'edit-button'
             %p or
             = link_to "商品の削除", item_path(@item), method: :delete, class: 'delete-button'
