@@ -47,6 +47,10 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
+    item.images.each do |image|
+      image.purge
+    end
+
     item.delete
     redirect_to root_path
   end
