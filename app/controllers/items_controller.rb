@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :login_required, only: [:new, :create]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_categories, only: [:new, :edit]
   before_action :set_category, only: [:show, :edit]
   protect_from_forgery :except => [:create]
@@ -46,12 +46,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    item.images.each do |image|
+    @item.images.each do |image|
       image.purge
     end
 
-    item.delete
+    @item.delete
     redirect_to root_path
   end
 
