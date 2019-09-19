@@ -119,22 +119,23 @@
           費・カード手数料は一切か
           %br
           かりません
-  %section.pickupContainer
-    %h2.head ピックアップカテゴリー
-    .productBox
-      .productHead
-        = link_to "#" do
-          %h3.title 新規投稿商品
-      .productLists
-        = render @new_items
-  %section.pickupContainer
-    %h2.head ピックアップブランド
-    .productBox
-      .productHead
-        = link_to "" do
-          %h3.title=@brand_items[0].brand.name
-      .productLists
-        = render @brand_items
+  - if @brand_items.present?
+    %section.pickupContainer
+      %h2.head ピックアップカテゴリー
+      .productBox
+        .productHead
+          = link_to "#" do
+            %h3.title 新規投稿商品
+        .productLists
+          = render @new_items
+    %section.pickupContainer
+      %h2.head ピックアップブランド
+      .productBox
+        .productHead
+          = link_to "" do
+            %h3.title=@brand_items[0].brand.name
+        .productLists
+          = render @brand_items
 = render "shared/banner"
 = render "shared/footer"
 = render "shared/purchaseBtn"
