@@ -25,6 +25,8 @@ gem 'active_hash'
 gem 'mini_magick'
 gem 'ancestry'
 gem 'payjp'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
