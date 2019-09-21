@@ -7,6 +7,6 @@
         = link_to "メールアドレスで登録", first_registrations_path, class: 'new_account_email'
         = fa_icon 'fa-envelope-o'
         %i.fa.fa-envelope-o
-        = link_to "Facebookで登録", "", class: 'new_account_facebook'
-        = link_to "Googleで登録", "", class: 'new_account_google'
+        = link_to "Facebookで登録", "/auth/facebook", class: 'new_account_facebook'
+        = link_to "Googleで登録", "/auth/google_oauth2", class: 'new_account_google'
   =render "shared_user/footer"
