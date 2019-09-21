@@ -15,4 +15,12 @@ class User < ApplicationRecord
   validates :prefecture, presence: true
   validates :city, presence: true
   validates :address, presence: true
+
+  def self.from_omniauth(auth)
+    user_new = User.create(nickname: auth.info.name, email: auth.info.email, password: '00000000', password_confirmation: '00000000', name: '', name_kana: '')
+    user_new.save :validate => false
+    user = User.last
+    sns = SnsCredential.create(provider: auth.provider, uid: auth.uid, user_id: user.id)
+    return user
+  end
 end
