@@ -6,8 +6,8 @@
         %p.newText アカウントをお持ちでない方はこちら
         = link_to"新規会員登録", first_registrations_path, class: "deviseBtn--blue"
       .deviseForm
-        = link_to "Facebookで登録", "", class: 'new_account_facebook'
-        = link_to "Googleで登録", "", class: 'new_account_google'
+        = link_to "Facebookで登録", "/auth/facebook", class: 'new_account_facebook'
+        = link_to "Googleで登録", "/auth/google_oauth2", class: 'new_account_google'
       .deviseForm.deviseForm--none
         = form_with url: sessions_path, method: :post, local: true, class: 'new_user' do |f|
           .deviseForm__field

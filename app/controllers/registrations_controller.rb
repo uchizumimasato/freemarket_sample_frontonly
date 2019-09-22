@@ -5,6 +5,27 @@ class RegistrationsController < ApplicationController
   def new
   end
 
+  def sns
+    if params[:provider] == 'facebook'
+      @facebook = params[:provider]
+      @user_name = request.env["omniauth.auth"][:extra][:raw_info][:name]
+      @email = request.env["omniauth.auth"][:extra][:raw_info][:email]
+      render template: 'registrations/first'
+    elsif params[:provider] == 'google_oauth2'
+      unless SnsCredential.find_by(uid: request.env["omniauth.auth"][:uid])
+        # 新規登録
+        user = User.from_omniauth(request.env["omniauth.auth"])
+        session[:user_id] = user.id
+        redirect_to root_path, notice: 'ログインしました'
+      else
+        # ログイン
+        sns = SnsCredential.find_by(uid: request.env["omniauth.auth"][:uid])
+        session[:user_id] = sns.user.id
+        redirect_to root_path, notice: 'ログインしました'
+      end
+    end
+  end
+
   def first
     @user = User.new
     reset_session
