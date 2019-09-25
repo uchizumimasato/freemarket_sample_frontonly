@@ -1,0 +1,21 @@
+= render "shared/header"
+.categoryHeader
+  %h2 カテゴリー一覧
+  .header_content
+    - @p_categories.each_with_index do |p_category, i|
+      %a{href: "#category-title#{i}", class: 'category_mini-card'}= p_category.name
+- @p_categories.each_with_index do |p_category, i|
+  .categoryContent
+    %h2.category_title{id: "category-title#{i}"}= p_category.name
+    .category_body
+      = link_to 'すべて', ''
+      - p_category.children.each do |c_category|
+        .category_section.clearfix
+          %h2= c_category.name
+          .category_lists
+            %p.category_list
+              = link_to 'すべて', search_category_path(c_category)
+            - c_category.children.each do |g_category|
+              %p.category_list
+                = link_to "#{g_category.name}", search_category_path(g_category)
+
