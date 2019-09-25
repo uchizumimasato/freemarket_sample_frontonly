@@ -18,6 +18,11 @@ Rails.application.routes.draw do
       post "purchase"
     end
   end
+  resources :categories, only: [:index] do
+    member do
+      get "search"
+    end
+  end
   resources :cards, only: [:new, :create]
   get "auth/:provider/callback" => 'registrations#sns'
 end
