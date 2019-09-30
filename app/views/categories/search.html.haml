@@ -1,2 +1,4 @@
-- @items.each do |item|
-  = item.name
+= render "shared/header"
+.searchCategory
+  - if @items.present?
+    = render partial: 'items/item', collection: @items
