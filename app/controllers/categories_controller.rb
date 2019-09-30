@@ -22,7 +22,5 @@ class CategoriesController < ApplicationController
     else
       @items = Item.where(category_id: params[:id])
     end
-
   end
-
 end
