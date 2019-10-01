@@ -3,7 +3,7 @@
   %h2 カテゴリー一覧
   .header_content
     - @p_categories.each_with_index do |p_category, i|
-      %a{href: "#category-title#{i}", class: 'category_mini-card'}= p_category.name
+      = link_to "#{p_category.name}", class: 'category_mini-card'
 - @p_categories.each_with_index do |p_category, i|
   .categoryContent
     %h2.category_title{id: "category-title#{i}"}= p_category.name
