@@ -1,12 +1,6 @@
 = render "shared/header"
-%nav.breadCrumbs
-  %ul
-    %li
-      = link_to "メルカリ", root_path
-    %li
-      = fa_icon "angle-right"
-    %li
-      %p マイページ
+- breadcrumb :mypage
+= breadcrumbs separator: " &rsaquo; "
 .main
   .contents
     = render "leftcontent"
