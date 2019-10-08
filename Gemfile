@@ -27,6 +27,7 @@ gem 'ancestry'
 gem 'payjp'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+gem 'gretel'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

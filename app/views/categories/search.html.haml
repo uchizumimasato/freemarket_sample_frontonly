@@ -1,4 +1,6 @@
 = render "shared/header"
+- breadcrumb :category_search
+= breadcrumbs pretext: "",separator: " &rsaquo; ", class: "breadcrumbs-list"
 .searchCategory
   - if @items.present?
     = render partial: 'items/item', collection: @items

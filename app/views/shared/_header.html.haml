@@ -26,7 +26,7 @@
       - if user_signed_in?
         %ul.listsRight
           %li.listsRight__item
-            = link_to user_path(current_user.id) do
+            = link_to user_path(id: current_user.id, name: 'マイページ') do
               = image_tag("member_photo_noimage_thumb.png", size: "32x32",)
               %span マイページ
           %li.listsRight__item
