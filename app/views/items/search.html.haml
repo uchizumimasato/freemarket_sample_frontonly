@@ -1,3 +1,39 @@
+= search_form_for @q, url: search_items_path do |f|
+  %p キーワードを追加する
+  = f.search_field :name_cont, class: 'searchBox--input', id: 'searchInput', placeholder: "キーワードから探す"
+  %p カテゴリーを選択する
+  = f.collection_select :category_id, Category.all, :id, :name, {prompt: '----'}
+  %p ブランド名から探す
+  = f.search_field :brand_name_cont
+  %p 価格
+  = f.search_field :price_gteq, placeholder: 'Min'
+  %span ～
+  = f.search_field :price_lteq, placeholder: 'Max'
+  %p 商品の状態
+  = f.check_box :item_status_eq, value: 0
+  = f.label :item_status, '新品・未使用'
+  = f.check_box :item_status_eq, value: 1
+  = f.label :item_status, '未使用に近い'
+  = f.check_box :item_status_eq, value: 2
+  = f.label :item_status, '目立った傷や汚れなし'
+  = f.check_box :item_status_eq, value: 3
+  = f.label :item_status, 'やや傷や汚れあり'
+  = f.check_box :item_status_eq, value: 4
+  = f.label :item_status, '傷や汚れあり'
+  = f.check_box :item_status_eq, value: 5
+  = f.label :item_status, '全体的に状態が悪い'
+  %p 配送料の負担
+  = f.check_box :delivery_fee_eq, value: 0
+  = f.label :delivery_fee, '送料込み'
+  = f.check_box :delivery_fee_eq, value: 1
+  = f.label '着払い'
+  %p 販売状況
+  = f.check_box :transaction_status_eq, value: 0
+  = f.label '販売中'
+  = f.check_box :transaction_status_eq, value: 2
+  = f.label '売り切れ'
+  = f.submit 'ボタン'
+
 - @items.each do |item|
   .item_box
     = image_tag item.images[0]

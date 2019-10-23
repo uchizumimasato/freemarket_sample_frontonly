@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
   def index
     @new_items = Item.order(created_at: "DESC").limit(4)
     @brand_items = Item.where(brand_id: 1).limit(4)
+    @q = Item.ransack(params[:q])
   end
 
   def show
@@ -71,6 +72,8 @@ class ItemsController < ApplicationController
 
   def search
     @items = Item.where('name LIKE(?)', "%#{params[:keyword]}%")
+    @q = Item.ransack(params[:q])
+    @items = @q.result
   end
 
   private
