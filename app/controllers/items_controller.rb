@@ -3,11 +3,13 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_categories, only: [:new, :edit]
   before_action :set_category, only: [:show, :edit]
+  before_action :set_ransack_q, expect: [:new, :edit]
   protect_from_forgery :except => [:create]
 
   def index
     @new_items = Item.order(created_at: "DESC").limit(4)
     @brand_items = Item.where(brand_id: 1).limit(4)
+    @q = Item.ransack(params[:q])
   end
 
   def show
@@ -71,6 +73,7 @@ class ItemsController < ApplicationController
 
   def search
     @items = Item.where('name LIKE(?)', "%#{params[:keyword]}%")
+    @items = @q.result
   end
 
   private
@@ -89,5 +92,9 @@ class ItemsController < ApplicationController
 
   def set_categories
     @categories = Category.find(1, 11)
+  end
+
+  def set_ransack_q
+    @q = Item.ransack(params[:q])
   end
 end
