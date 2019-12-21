@@ -38,7 +38,7 @@ $(function(){
                 </label>`
     image(reader, file, $(label).data('label-index'))
     $('.formUploader').css('width', persent + '%')
-    $($('.formUploader label')[img_count - 1]).css('display','none')
+    $($('.formUploader label')).css('display','none')
     $('.formUploader').append(label)
   })
 

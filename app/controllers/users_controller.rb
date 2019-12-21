@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :set_ransack_q
+
   def show
     @user = current_user
   end
@@ -21,12 +23,16 @@ class UsersController < ApplicationController
   end
 
   def purchase
-    @products = Product.is_purchased(current_user.id)
-                       .where(transaction_status: 'in_progress')
+    @items = Item.where(transaction_status: 1, seller_id: current_user.id)
   end
 
   def purchased
-    @products = Product.is_purchased(current_user.id)
-                       .where(transaction_status: 'completed')
+    @items = Item.where(transaction_status: 2, seller_id: current_user.id)
+  end
+
+  private
+
+  def set_ransack_q
+    @q = Item.ransack(params[:q])
   end
 end

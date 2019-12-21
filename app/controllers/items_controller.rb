@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_categories, only: [:new, :edit]
   before_action :set_category, only: [:show, :edit]
+  before_action :set_ransack_q, expect: [:new, :edit]
   protect_from_forgery :except => [:create]
 
   def index
@@ -72,7 +73,6 @@ class ItemsController < ApplicationController
 
   def search
     @items = Item.where('name LIKE(?)', "%#{params[:keyword]}%")
-    @q = Item.ransack(params[:q])
     @items = @q.result
   end
 
@@ -92,5 +92,9 @@ class ItemsController < ApplicationController
 
   def set_categories
     @categories = Category.find(1, 11)
+  end
+
+  def set_ransack_q
+    @q = Item.ransack(params[:q])
   end
 end

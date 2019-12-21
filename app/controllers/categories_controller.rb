@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_action :set_ransack_q
+
   def index
     @p_categories = Category.where(id: [1, 11])
   end
@@ -22,5 +24,11 @@ class CategoriesController < ApplicationController
     else
       @items = Item.where(category_id: params[:id])
     end
+  end
+
+  private
+
+  def set_ransack_q
+    @q = Item.ransack(params[:q])
   end
 end
