@@ -4,7 +4,7 @@ lock '3.11.0'
 set :application, 'freemarket_sample_frontonly'
 set :repo_url,  'git@github.com:uchizumimasato/freemarket_sample_frontonly.git'
 
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads', "config/master.key")
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.5.1' #カリキュラム通りに進めた場合、2.5.1か2.3.1です
