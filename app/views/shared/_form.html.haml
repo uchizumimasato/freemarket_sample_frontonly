@@ -3,7 +3,6 @@
     %h2.title 商品の情報を入力
     .productForm
       = form_with model: @item, class: 'new_item', local: true do |f|
-        - binding.pry
         .formSection
           = f.hidden_field :seller_id, value: current_user.id
           = f.hidden_field :buyer_id, value: current_user.id
