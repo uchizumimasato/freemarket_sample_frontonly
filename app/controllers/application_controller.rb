@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :basic_auth, if: :production?
+  before_action :basic_auth
   helper_method :current_user
   helper_method :login_required
   helper_method :user_signed_in?
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def basic_auth
     authenticate_or_request_with_http_basic do |username, password|
-      username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"]
+      username == 'mercari' && password == 'aaaa'
     end
   end
 
