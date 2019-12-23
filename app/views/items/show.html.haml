@@ -96,12 +96,17 @@
                 = fa_icon "lock", text: "あんしん・あんぜんへの取り組み"
       .bottomContent
         .bottomContent_buttons
-          - if @item.buyer_id == current_user.id
-            = link_to "商品の編集", edit_item_path(@item), class: 'edit-button'
-            %p or
-            = link_to "商品の削除", item_path(@item), method: :delete, class: 'delete-button'
+          - if user_signed_in?
+            - if @item.buyer_id == current_user.id
+              = link_to "商品の編集", edit_item_path(@item), class: 'edit-button'
+              %p or
+              = link_to "商品の削除", item_path(@item), method: :delete, class: 'delete-button'
+            - else
+              = link_to "購入画面に進む", purchase_new_item_path(@item)
           - else
             = link_to "購入画面に進む", purchase_new_item_path(@item)
+
+
         -# - if user_signed_in?
         -#   .commentBox
         -#     - if @comments
